@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-          label 'linux'
+          label 'windows'
           image 'maven:3.6.3'
         }
     }
