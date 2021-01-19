@@ -1,4 +1,4 @@
-package com.example.demo.restassured;
+package com.example.demo.rest;
 
 
 import com.example.demo.dto.SingleUserDTO;
@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootTest
+@Disabled
 public class RESTTest {
 
     private static final Logger logger = LogManager.getLogger(RESTTest.class);
