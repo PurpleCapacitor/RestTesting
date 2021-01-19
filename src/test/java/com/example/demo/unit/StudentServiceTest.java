@@ -7,6 +7,7 @@ import com.example.demo.repos.StudentRepository;
 import com.example.demo.services.impl.StudentServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;
@@ -24,8 +25,8 @@ public class StudentServiceTest {
 
     @Mock
     private StudentRepository studentRepository;
-    @Mock
-    private StudentMapper studentMapper;
+    //@Mock
+    private StudentMapper studentMapper = new StudentMapper(); //no initialisation if mocked
     private StudentServiceImpl service;
     private Student student;
     private StudentDTO studentDTO;
@@ -35,14 +36,12 @@ public class StudentServiceTest {
         service = new StudentServiceImpl(studentRepository, studentMapper);
         student = new Student(1, "John", "johh", "pas1");
         studentDTO = new StudentDTO(1, "John", "johh", "pas1");
-        /*Mockito.when(studentMapper.transformToDTO(Mockito.any(Student.class))).thenReturn(Mockito.mock(StudentDTO.class));
-        Mockito.when(studentMapper.transformToEntity(Mockito.any(StudentDTO.class))).thenReturn(Mockito.mock(Student.class));*/
-        Mockito.when(studentMapper.transformToDTO(Mockito.any(Student.class))).thenReturn(studentDTO);
-        Mockito.when(studentMapper.transformToEntity(Mockito.any(StudentDTO.class))).thenReturn(student);
-    } // alternative is to @Inject on dependencies
+        /*Mockito.when(studentMapper.transformToDTO(Mockito.any(Student.class))).thenReturn(studentDTO);
+        Mockito.when(studentMapper.transformToEntity(Mockito.any(StudentDTO.class))).thenReturn(student);*/
+    }
 
     @Test
-    //@Disabled("Not so much point, just for presentation")
+    @Disabled("Not so much point, just for presentation")
     public void saveTest() {
         Mockito.when(studentRepository.save(Mockito.any())).thenReturn(student);
         StudentDTO savedStudent = service.save(studentDTO);
